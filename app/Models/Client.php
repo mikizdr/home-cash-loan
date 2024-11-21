@@ -29,7 +29,7 @@ class Client extends Model
      * Eager loading of the home loan products.
      * @var array
      */
-    protected $with = ['homeLoanProducts'];
+    protected $with = ['homeLoanProduct', 'cashLoanProduct'];
 
     /**
      * Get the advisor that owns the client.
@@ -42,8 +42,16 @@ class Client extends Model
     /**
      * Get the home loan products for the client.
      */
-    public function homeLoanProducts(): HasOne
+    public function homeLoanProduct(): HasOne
     {
         return $this->hasOne(HomeLoanProduct::class);
+    }
+
+    /**
+     * Get the cash loan products for the client.
+     */
+    public function cashLoanProduct(): HasOne
+    {
+        return $this->hasOne(CashLoanProduct::class);
     }
 }
