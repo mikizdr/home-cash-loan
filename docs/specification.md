@@ -18,8 +18,8 @@ provide them with two types of loans:
 ### Database structure
 
 This is how the db structure should look like, together with its integrity:
-- [ ] `roles` table for different types of users in the app - roles with different level of authorization: 'user' and 'advisor' will bi used for this case. The 'user' role is with the lowest level of permissions; the 'advisor' role has much higher level of permissions. All setting related to roles will be in Role model.
-- [ ] advisors will be stored in `users` table with a appropriate role ID.
+- [x] `roles` table for different types of users in the app - roles with different level of authorization: 'user' and 'advisor' will bi used for this case. The 'user' role is with the lowest level of permissions; the 'advisor' role has much higher level of permissions. All setting related to roles will be in Role model.
+- [x] advisors will be stored in `users` table with a appropriate role ID.
 - [ ] `clients` table for storing clients. It will have very basic attributes (columns): first and last name, email, phone, address, and advisor_id as a FK constraint to the `user` table.
 - [ ] `cash_loan_products` table for storing the data about cash loans for clients. It will have the next attributes (columns):
     - client_id - an unique FK constraint to the `clients` table
@@ -33,13 +33,13 @@ This is how the db structure should look like, together with its integrity:
 
 ### Application structure
 
-- [ ] Role model
+- [x] Role model
 - [ ] Client model
 - [ ] HomeLoanProduct model
 - [ ] CashLoanProduct model
 
 ##### Relationships
-- [ ] role - advisor - ONE TO ONE
+- [x] role - advisor - ONE TO ONE
 - [ ] client - advisor - ONE TO ONE
 - [ ] client - cash_loan_product - ONE TO ONE
 - [ ] client - home_loan_product - ONE TO ONE
@@ -47,7 +47,7 @@ This is how the db structure should look like, together with its integrity:
 - [ ] advisor - home_loan_product - HAS ONE THROUGH (if needed)
 
 ### Back end
-- [ ] User authentication
+- [x] User authentication
 - [ ] Client management
 - [ ] Advisor authorization:
     - [ ] Advisor can view all clients (no restrictions)
@@ -118,10 +118,10 @@ This is how the db structure should look like, together with its integrity:
 
 # Tasks - workflow
 
-- [ ] Set up project structure
-- [ ] Implement authentication
-- [ ] Add the Role entity in the app
-- [ ] Create `roles` table with a seeder
+- [x] Set up project structure
+- [x] Implement authentication
+- [x] Add the Role entity in the app
+- [x] Create `roles` table with a seeder
 - [ ] Add the Client entity in the app
 - [ ] Create `clients` table with a seeder
 - [ ] Add the HomeLoanProduct entity in the app

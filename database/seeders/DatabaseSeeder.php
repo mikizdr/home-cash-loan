@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // NOTE: mandatory seeder.
+        $this->call(RoleSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // if statement has been added to check if there are records in the tables
+        // how it wouldn't seed the DB several times with duplicates.
+
+        if (in_array(env('APP_ENV'), ['local', 'testing'])) {
+            // Advisors for testing.
+            if (User::where('role_id', Role::ADVISOR)->doesntExist()) {
+                $this->call(AdvisorSeeder::class);
+            }
+
+            // Default user for testing.
+            if (User::where('email', 'test@example.com')->doesntExist()) {
+                User::factory()->create([
+                    'name' => 'Test User',
+                    'email' => 'test@example.com',
+                ]);
+            }
+        }
+
     }
 }
