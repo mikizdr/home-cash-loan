@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,7 +34,11 @@ class DatabaseSeeder extends Seeder
                     'email' => 'test@example.com',
                 ]);
             }
-        }
 
+            // Clients for testing.
+            if (Client::doesntExist()) {
+                $this->call(ClientSeeder::class);
+            }
+        }
     }
 }

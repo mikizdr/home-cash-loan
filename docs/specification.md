@@ -34,13 +34,14 @@ This is how the db structure should look like, together with its integrity:
 ### Application structure
 
 - [x] Role model
-- [ ] Client model
+- [x] Client model
 - [ ] HomeLoanProduct model
 - [ ] CashLoanProduct model
 
 ##### Relationships
 - [x] role - advisor - ONE TO ONE
-- [ ] client - advisor - ONE TO ONE
+- [x] client - advisor - ONE TO ONE
+- [x] advisor - clients - ONE TO MANY
 - [ ] client - cash_loan_product - ONE TO ONE
 - [ ] client - home_loan_product - ONE TO ONE
 - [ ] advisor - cash_loan_product - HAS ONE THROUGH (if needed)
@@ -51,8 +52,7 @@ This is how the db structure should look like, together with its integrity:
 - [ ] Client management
 - [ ] Advisor authorization:
     - [ ] Advisor can view all clients (no restrictions)
-    - [ ] Advisor can not update a client’s product, if that product is assigned to a
-    different advisor
+    - [ ] Advisor can not update a client’s product, if that product is assigned to a different advisor
     - [ ] When compiling the report, only products of the currently logged-in advisor must be used
 - [ ] CRUD on a client by an advisor
     - [ ] create a client
@@ -122,8 +122,8 @@ This is how the db structure should look like, together with its integrity:
 - [x] Implement authentication
 - [x] Add the Role entity in the app
 - [x] Create `roles` table with a seeder
-- [ ] Add the Client entity in the app
-- [ ] Create `clients` table with a seeder
+- [x] Add the Client entity in the app
+- [x] Create `clients` table with a seeder
 - [ ] Add the HomeLoanProduct entity in the app
 - [ ] Create `home_loan_products` table with a seeder
 - [ ] Add the CashLoanProduct entity in the app
