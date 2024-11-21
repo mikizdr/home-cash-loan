@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Client extends Model
 {
@@ -25,10 +26,24 @@ class Client extends Model
     ];
 
     /**
+     * Eager loading of the home loan products.
+     * @var array
+     */
+    protected $with = ['homeLoanProducts'];
+
+    /**
      * Get the advisor that owns the client.
      */
     public function advisor(): BelongsTo
     {
         return $this->belongsTo(User::class,  'advisor_id');
+    }
+
+    /**
+     * Get the home loan products for the client.
+     */
+    public function homeLoanProducts(): HasOne
+    {
+        return $this->hasOne(HomeLoanProduct::class);
     }
 }

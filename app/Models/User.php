@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -60,7 +61,6 @@ class User extends Authenticatable
 
     /**
      * Get the role that owns the user.
-     * @return BelongsTo
      */
     public function role(): BelongsTo
     {
@@ -69,11 +69,34 @@ class User extends Authenticatable
 
     /**
      * Get all of the clients for this user.
-     *
-     * @return HasMany
      */
     public function clients(): HasMany
     {
         return $this->hasMany(Client::class, 'advisor_id');
+    }
+
+    /**
+     * Get the home loan product for a client that belongs to this advisor.
+     */
+    public function homeLoanProduct(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            related: HomeLoanProduct::class,
+            through: Client::class,
+            firstKey: 'advisor_id',
+            secondKey: 'client_id'
+        );
+    }
+
+    /**
+     * Get a specific client by ID or any other attribute.
+     *
+     * @param mixed $attribute
+     * @param mixed $value
+     * @return Client|null
+     */
+    public function getClientByAttribute($attribute, $value): ?Client
+    {
+        return $this->clients()->where($attribute, $value)->first();
     }
 }

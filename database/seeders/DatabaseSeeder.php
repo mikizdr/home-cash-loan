@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Client;
+use App\Models\HomeLoanProduct;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,6 +40,12 @@ class DatabaseSeeder extends Seeder
             if (Client::doesntExist()) {
                 $this->call(ClientSeeder::class);
             }
+
+            // Home loan products for testing.
+            if (HomeLoanProduct::doesntExist()) {
+                $this->call(HomeLoanProductSeeder::class);
+            }
         }
+
     }
 }
