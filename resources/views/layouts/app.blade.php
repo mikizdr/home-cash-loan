@@ -21,7 +21,7 @@
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-7xl mx-auto pt-6 pb-2 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
@@ -33,4 +33,11 @@
             </main>
         </div>
     </body>
+
+    <!-- Include internal script for additional functionality. -->
+    <script src="{{ asset('/assets/js/script.js') }}"></script>
+
+    <!-- Include or push partial scripts sections for additional functionality on certain pages. -->
+    @stack('scripts')
+    @yield('scripts')
 </html>
