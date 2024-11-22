@@ -20,11 +20,11 @@ provide them with two types of loans:
 This is how the db structure should look like, together with its integrity:
 - [x] `roles` table for different types of users in the app - roles with different level of authorization: 'user' and 'advisor' will bi used for this case. The 'user' role is with the lowest level of permissions; the 'advisor' role has much higher level of permissions. All setting related to roles will be in Role model.
 - [x] advisors will be stored in `users` table with a appropriate role ID.
-- [ ] `clients` table for storing clients. It will have very basic attributes (columns): first and last name, email, phone, address, and advisor_id as a FK constraint to the `user` table.
-- [ ] `cash_loan_products` table for storing the data about cash loans for clients. It will have the next attributes (columns):
+- [x] `clients` table for storing clients. It will have very basic attributes (columns): first and last name, email, phone, address, and advisor_id as a FK constraint to the `user` table.
+- [x] `cash_loan_products` table for storing the data about cash loans for clients. It will have the next attributes (columns):
     - client_id - an unique FK constraint to the `clients` table
     - loan_amount - decimal number for the amount of the required loan.
-- [ ] `home_loan_products` table for storing the data about home loans for clients. It will have the next attributes (columns):
+- [x] `home_loan_products` table for storing the data about home loans for clients. It will have the next attributes (columns):
     - client_id - an unique FK constraint to the `clients` table
     - property_value - decimal number for a property value
     - down_payment - decimal number for the amount of the down payment
@@ -44,46 +44,46 @@ This is how the db structure should look like, together with its integrity:
 - [x] advisor - clients - ONE TO MANY
 - [x] client - cash_loan_product - ONE TO ONE
 - [x] client - home_loan_product - ONE TO ONE
-- [x] advisor - cash_loan_product - HAS ONE THROUGH (if needed)
 - [x] advisor - home_loan_product - HAS ONE THROUGH (if needed)
 
 ### Back end
 - [x] User authentication
-- [ ] Client management
-- [ ] Advisor authorization:
+- [x] Advisor authorization:
     - [ ] Advisor can view all clients (no restrictions)
-    - [ ] Advisor can not update a client’s product, if that product is assigned to a different advisor
+    - [x] Advisor can not update a client’s product, if that product is assigned to a different advisor
     - [ ] When compiling the report, only products of the currently logged-in advisor must be used
-- [ ] CRUD on a client by an advisor
-    - [ ] create a client
-    - [ ] update a client
-    - [ ] delete a client
-    - [ ] add/update cash loan
-    - [ ] add/update home loan and property value
+- [x] Client management
+    - [x] Show all clients
+    - [ ] CRUD on a client by an advisor
+        - [ ] create a client
+        - [ ] update a client
+        - [ ] delete a client
+        - [ ] add/update cash loan
+        - [ ] add/update home loan and property value
 - [ ] Data validation at the DB level and app level (front and back end)
 - [ ] Generate a report for an advisor
 
 ### Front end
 - Login page:
-    - [ ] email and password
-    - [ ] After a successful login, take the advisor to the `Dashboard` page.
+    - [x] email and password
+    - [x] After a successful login, take the advisor to the `Dashboard` page.
 <br />
 - Advisor dashboard page:
-    - [ ] Contains a link to `View All Clients` - menu item `Clients`
-    - [ ] Contains a link to `View Report` - menu item `Report`
-    - [ ] `Logout` button - already implemented with application scaffolding.
+    - [x] Contains a link to `View All Clients` - menu item `Clients`
+    - [x] Contains a link to `View Report` - menu item `Report`
+    - [x] `Logout` button - already implemented with application scaffolding.
 <br />
 - View all client's page:
-    - [ ] `Go back to dashboard` button
-    - [ ] `Create A Client` button
-    - [ ] A list of clients from the database, represented through a table, with the following columns:
-        - [ ] First name
-        - [ ] Last name
-        - [ ] Email
-        - [ ] Phone
-        - [ ] Cash loan (yes/no - if the client has applied)
-        - [ ] Home loan (yes/no - if the client has applied)
-        - [ ] Actions
+    - [x] `Go back to dashboard` button
+    - [x] `Create A Client` button
+    - [x] A list of clients from the database, represented through a table, with the following columns:
+        - [x] First name
+        - [x] Last name
+        - [x] Email
+        - [x] Phone
+        - [x] Cash loan (yes/no - if the client has applied)
+        - [x] Home loan (yes/no - if the client has applied)
+        - [x] Actions
         - [ ] Edit button -> Should open an edit page for that client
         - [ ] Delete button -> Should delete that client
 <br />
@@ -130,10 +130,10 @@ This is how the db structure should look like, together with its integrity:
 - [x] Create `cash_loan_products` table with a seeder
 - [ ] Develop client management module (CRUD by advisor)
 - [ ] Generate reports: implement business logic for report generation for an auth advisor
-- [ ] Create advisor profile page (already exists in the system)
-- [ ] Design `Login Page`: layout, FE validation
+- [x] Create advisor profile page (already exists in the system)
+- [x] Design `Login Page`: layout, FE validation
 - [ ] Design `Dashboard`: implement required links in the main menu
-- [ ] Design `All Clients` page
+- [x] Design `All Clients` page
 - [ ] Design `Create Client` page
 - [ ] Design `Edit Client` page
 - [ ] Design `View Report` page
