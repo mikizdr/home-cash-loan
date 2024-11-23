@@ -49,18 +49,18 @@ This is how the db structure should look like, together with its integrity:
 ### Back end
 - [x] User authentication
 - [x] Advisor authorization:
-    - [ ] Advisor can view all clients (no restrictions)
+    - [x] Advisor can view all clients (no restrictions)
     - [x] Advisor can not update a client’s product, if that product is assigned to a different advisor
     - [ ] When compiling the report, only products of the currently logged-in advisor must be used
 - [x] Client management
     - [x] Show all clients
-    - [ ] CRUD on a client by an advisor
-        - [ ] create a client
-        - [ ] update a client
-        - [ ] delete a client
+    - [x] CRUD on a client by an advisor
+        - [x] create a client
+        - [x] update a client
+        - [x] delete a client
         - [ ] add/update cash loan
         - [ ] add/update home loan and property value
-- [ ] Data validation at the DB level and app level (front and back end)
+- [x] Data validation at the DB level and app level (front and back end)
 - [ ] Generate a report for an advisor
 
 ### Front end
@@ -84,19 +84,19 @@ This is how the db structure should look like, together with its integrity:
         - [x] Cash loan (yes/no - if the client has applied)
         - [x] Home loan (yes/no - if the client has applied)
         - [x] Actions
-        - [ ] Edit button -> Should open an edit page for that client
-        - [ ] Delete button -> Should delete that client
+        - [x] Edit button -> Should open an edit page for that client
+        - [x] Delete button -> Should delete that client
 <br />
 - Create client page:
-    - [ ] `Go back to clients` button
-    - [ ] A basic page with a form with all of the fields needed to create the
+    - [x] `Go back to clients` button
+    - [x] A basic page with a form with all of the fields needed to create the
     client
-    - [ ] First name and last name are always required, and <strong>at least an email or a phone is required</strong>.
+    - [x] First name and last name are always required, and <strong>at least an email or a phone is required</strong>.
 <br />
 - Edit client page
-    - [ ] `Go back to clients` button
-    - [ ] Display a form with loaded client data, through which clients can be updated.
-        - [ ] First name and last name are required always, and <strong>at least an email or a phone is required</strong>
+    - [x] `Go back to clients` button
+    - [x] Display a form with loaded client data, through which clients can be updated.
+        - [x] First name and last name are required always, and <strong>at least an email or a phone is required</strong>
     - [ ] Display a form for filling in the Cash loan application for the loaded
     client (both create and update)
         - [ ] Client ID is the client being edited
@@ -128,14 +128,14 @@ This is how the db structure should look like, together with its integrity:
 - [x] Create `home_loan_products` table with a seeder
 - [x] Add the CashLoanProduct entity in the app
 - [x] Create `cash_loan_products` table with a seeder
-- [ ] Develop client management module (CRUD by advisor)
+- [x] Develop client management module (CRUD by advisor)
 - [ ] Generate reports: implement business logic for report generation for an auth advisor
 - [x] Create advisor profile page (already exists in the system)
 - [x] Design `Login Page`: layout, FE validation
 - [ ] Design `Dashboard`: implement required links in the main menu
 - [x] Design `All Clients` page
-- [ ] Design `Create Client` page
-- [ ] Design `Edit Client` page
+- [x] Design `Create Client` page
+- [x] Design `Edit Client` page
 - [ ] Design `View Report` page
 - [ ] Write unit and e2e tests (if needed)
 
