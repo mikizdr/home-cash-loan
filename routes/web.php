@@ -20,6 +20,9 @@ Route::middleware(['auth'])->group(function (): void {
         Route::resource('/clients', AdvisorController::class)->except('show');
         Route::post('/clients/{client}/loan-cash', [AdvisorController::class, 'loanCash'])->name('clients.loan.cash');
         Route::post('/clients/{client}/loan-home', [AdvisorController::class, 'loanHome'])->name('clients.loan.home');
+
+        // Report route.
+        Route::get('/clients/report', [AdvisorController::class, 'advisorReport'])->name('advisor.report');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

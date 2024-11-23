@@ -23,12 +23,13 @@ class EnsureAdvisorOwnsClient
             return $next($request);
         }
 
-        if (Auth::check() && Auth::user()->isAdvisor() && Route::is(['clients.index', 'clients.create'])) {
+        if (Auth::check() && Auth::user()->isAdvisor() && Route::is(['clients.index', 'clients.create', 'advisor.report'])) {
             return $next($request);
         }
 
         $route = 'dashboard';
         $message = __('You do not have permissions for this operation.');
+
         if (Auth::check() && Auth::user()->isAdvisor()) {
             $route = 'clients.index';
             $message = __('You do not own this client.');

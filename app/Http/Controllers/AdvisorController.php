@@ -127,4 +127,9 @@ class AdvisorController extends Controller
                 ->with('client-error', "Client $client->first_name $client->last_name home loan creation failed: {$e->getMessage()}.");
         }
     }
+
+    public function advisorReport(): Factory|View
+    {
+        return view('client.report');
+    }
 }
