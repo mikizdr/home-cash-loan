@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use App\Http\Requests\LoanAmountRequest;
 use App\Http\Requests\ClientCreateRequest;
 use App\Http\Requests\ClientUpdateRequest;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
 
 class AdvisorController extends Controller
 {
@@ -72,5 +73,30 @@ class AdvisorController extends Controller
 
         return redirect()->route('clients.index')
             ->with('client-action', "Client $client->first_name $client->last_name deleted successfully.");
+    }
+
+    /**
+     * Create or update a cash loan for the specified client.
+     */
+    public function loanCash(LoanAmountRequest $request, Client $client): RedirectResponse
+    {
+        try {
+            $loanAmount = (float) $request->input('loan_amount');
+
+            $client->cashLoanProduct()->updateOrCreate(
+                [
+                    'client_id' => $client->id
+                ],
+                [
+                    'loan_amount' => $loanAmount,
+                ]
+            );
+
+            return back()
+                ->with('client-action', "Cash loan of the client $client->first_name $client->last_name's created successfully!");
+        } catch (\Exception $e) {
+            return back()
+                ->with('client-error', "Client $client->first_name $client->last_name cash loan creation failed: {$e->getMessage()}.");
+        }
     }
 }

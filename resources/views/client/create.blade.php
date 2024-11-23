@@ -27,7 +27,6 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <x-crm-input
                                 name="first_name"
-                                minlength="3"
                                 maxlength="50"
                                 id="first_name"
                                 :value="old('first_name')"
@@ -42,7 +41,6 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <x-crm-input
                                 name="last_name"
-                                minlength="3"
                                 maxlength="50"
                                 id="last_name"
                                 :value="old('last_name')"
@@ -89,8 +87,7 @@
                     <div class="relative z-0 w-full mb-5 group">
                         <x-crm-input
                             name="address"
-                            minlength="5"
-                            maxlength="50"
+                            maxlength="255"
                             id="address"
                             placeholder=" "
                             :value="old('address')"

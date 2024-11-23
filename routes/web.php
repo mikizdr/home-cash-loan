@@ -16,7 +16,8 @@ Route::middleware(['auth'])->group(function (): void {
     })->name('dashboard');
 
     // Routes for manipulating with clients.
-    Route::resource('clients', AdvisorController::class)->except('show')->middleware(EnsureAdvisorOwnsClient::class);
+    Route::resource('/clients', AdvisorController::class)->except('show')->middleware(EnsureAdvisorOwnsClient::class);
+    Route::post('/clients/{client}/loan-cash', [AdvisorController::class, 'loanCash'])->name('clients.loan.cash');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -31,7 +31,6 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <x-crm-input
                                 name="first_name"
-                                minlength="3"
                                 maxlength="50"
                                 id="first_name"
                                 :value="$client->first_name"
@@ -46,7 +45,6 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <x-crm-input
                                 name="last_name"
-                                minlength="3"
                                 maxlength="50"
                                 id="last_name"
                                 :value="$client->last_name"
@@ -93,8 +91,7 @@
                     <div class="relative z-0 w-full mb-5 group">
                         <x-crm-input
                             name="address"
-                            minlength="5"
-                            maxlength="50"
+                            maxlength="255"
                             id="address"
                             placeholder=" "
                             :value="$client->address"
@@ -105,11 +102,48 @@
                         {{-- Front end validation --}}
                         <span id="address_error" class="error-message"></span>
                     </div>
-                    <button
-                        type="submit"
-                        class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
+                    <button type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         {{ __('Update') }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">
+                {{ __('Client\'s Cash Loan') }}
+            </h3>
+            <hr class="mb-4 border-blue-500" />
+            <div class="relative overflow-x-auto">
+                <form
+                    id="loanCash"
+                    method="post"
+                    action="{{ route('clients.loan.cash', $client->id) }}"
+                    class="max-w mx-auto p-2 mt-4"
+                    novalidate
+                >
+                    @csrf
+
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 w-full mb-5 group">
+                            <x-crm-input
+                                type="number"
+                                name="loan_amount"
+                                id="loan_amount"
+                                :value="$client->cashLoanProduct->loan_amount ?? 0"
+                                required
+                            />
+                            <x-crm-label for="loan_amount" :value="__('Loan cash')" />
+                            {{-- Error message from the back end --}}
+                            <x-input-error class="mt-2" :messages="$errors->get('loan_amount')" />
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="focus:outline-none text-white bg-amber-500 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-amber-900">
+                        {{ __('Update Cash Loan') }}
                     </button>
                 </form>
             </div>
