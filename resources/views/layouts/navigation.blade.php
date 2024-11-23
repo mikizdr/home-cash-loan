@@ -16,17 +16,27 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                        {{ __('Clients') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                        {{ __('Report') }}
-                    </x-nav-link>
-                </div>
+
+                @if (auth()->user()->isAdvisor())
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                            {{ __('Clients') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                            {{ __('Report') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
             </div>
+
+            @if (!auth()->user()->isAdvisor())
+                <div class="pt-2 mx-auto">
+                    @include('client.partials.show-flash-message')
+                </div>
+            @endif
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

@@ -76,27 +76,27 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the home loan product for a client that belongs to this advisor.
+     * Get a specific client by ID to check if he belongs to the advisor.
+     *
+     * @param int $id
+     * @return bool
      */
-    public function homeLoanProduct(): HasOneThrough
+    public function advisorOwnsClient(int $id): bool
     {
-        return $this->hasOneThrough(
-            related: HomeLoanProduct::class,
-            through: Client::class,
-            firstKey: 'advisor_id',
-            secondKey: 'client_id'
-        );
+        if (!$this->isAdvisor()) {
+            return false;
+        }
+
+        return (bool) $this->clients()->find($id);
     }
 
     /**
-     * Get a specific client by ID or any other attribute.
+     * Determine if the user is an advisor.
      *
-     * @param mixed $attribute
-     * @param mixed $value
-     * @return Client|null
+     * @return bool
      */
-    public function getClientByAttribute($attribute, $value): ?Client
+    public function isAdvisor(): bool
     {
-        return $this->clients()->where($attribute, $value)->first();
+        return $this->role_id === Role::ADVISOR;
     }
 }

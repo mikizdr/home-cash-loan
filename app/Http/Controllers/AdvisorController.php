@@ -45,14 +45,6 @@ class AdvisorController extends Controller
     }
 
     /**
-     * Display the specified client.
-     */
-    public function show(Client $client)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified client.
      */
     public function edit(Client $client): Factory|View
