@@ -6,38 +6,46 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientCreateRequest;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 
 class AdvisorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a paginated listing of all clients.
      */
     public function index(): Factory|View
     {
-        return view('client.index', [
-            'clients' => Client::paginate(10)
-        ]);
+        $clients = Client::orderByDesc('id')->paginate(10);
+
+        return view('client.index', compact('clients'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new client.
      */
-    public function create()
+    public function create(): Factory|View
     {
-        //
+        return view('client.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created client in storage.
      */
-    public function store(Request $request)
+    public function store(ClientCreateRequest $request): RedirectResponse
     {
-        //
+        $advisorId =  $request->user()->id;
+        $client = Client::create(array_merge($request->except('_token'), [
+            'advisor_id' => $advisorId
+        ]));
+
+        return redirect()->route('clients.index')
+        ->with('client-action', "Client $client->first_name $client->last_name created successfully!");
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified client.
      */
     public function show(Client $client)
     {
@@ -45,11 +53,11 @@ class AdvisorController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified client.
      */
     public function edit(Client $client)
     {
-        //
+        //;
     }
 
     /**

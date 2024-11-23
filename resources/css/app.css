@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.error-border {
+    border-color: red;
+}
+.error-message {
+    color: red;
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    margin-top: 0.25rem; /* Tailwind's mt-1 */
+}

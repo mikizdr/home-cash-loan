@@ -24,7 +24,7 @@ class ClientCreateRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'min:3', 'max:50'],
             'last_name' => ['required', 'string', 'min:3', 'max:50'],
-            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:clients', 'required_without:phone'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:clients', 'required_without:phone'],
             'phone' => ['nullable', 'string', 'max:30', 'unique:clients', 'required_without:email'],
             'address' => ['nullable', 'string', 'max:255'],
         ];
