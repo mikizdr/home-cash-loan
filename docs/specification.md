@@ -58,8 +58,8 @@ This is how the db structure should look like, together with its integrity:
         - [x] create a client
         - [x] update a client
         - [x] delete a client
-        - [ ] add/update cash loan
-        - [ ] add/update home loan and property value
+        - [x] add/update cash loan
+        - [x] add/update home loan and property value
 - [x] Data validation at the DB level and app level (front and back end)
 - [ ] Generate a report for an advisor
 
@@ -97,13 +97,13 @@ This is how the db structure should look like, together with its integrity:
     - [x] `Go back to clients` button
     - [x] Display a form with loaded client data, through which clients can be updated.
         - [x] First name and last name are required always, and <strong>at least an email or a phone is required</strong>
-    - [ ] Display a form for filling in the Cash loan application for the loaded
+    - [x] Display a form for filling in the Cash loan application for the loaded
     client (both create and update)
-        - [ ] Client ID is the client being edited
-        - [ ] Advisor ID is the advisor currently logged in
-    - [ ] Display a form for filling in the Home loan application for the loaded client (both create and update)
-        - [ ] Client ID is the client being edited
-        - [ ] Advisor ID is the advisor currently logged in
+        - [x] Client ID is the client being edited
+        - [x] Advisor ID is the advisor currently logged in
+    - [x] Display a form for filling in the Home loan application for the loaded client (both create and update)
+        - [x] Client ID is the client being edited
+        - [x] Advisor ID is the advisor currently logged in
 
 - View report page:
     - [ ] Display a single table, with the following columns:
