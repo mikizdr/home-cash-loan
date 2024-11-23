@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
-use App\Http\Requests\LoanAmountRequest;
+use App\Http\Requests\CashAmountRequest;
 use App\Http\Requests\ClientCreateRequest;
 use App\Http\Requests\ClientUpdateRequest;
 use App\Http\Requests\HomeAmountRequest;
@@ -79,7 +79,7 @@ class AdvisorController extends Controller
     /**
      * Create or update a cash loan for the specified client.
      */
-    public function loanCash(LoanAmountRequest $request, Client $client): RedirectResponse
+    public function loanCash(CashAmountRequest $request, Client $client): RedirectResponse
     {
         try {
             $loanAmount = (float) $request->input('loan_amount');

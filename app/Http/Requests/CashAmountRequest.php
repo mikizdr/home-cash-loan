@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class LoanAmountRequest extends AdvisorAuthorizationRequest
+class CashAmountRequest extends AdvisorAuthorizationRequest
 {
     /**
      * Get the validation rules that apply to the request.
