@@ -54,4 +54,52 @@ class Client extends Model
     {
         return $this->hasOne(CashLoanProduct::class);
     }
+
+    /**
+     * Since it's a good practice to store phone numbers in a consistent format.
+     * Set the client's phone number to contain only numbers (as showcase for our case).
+     * It also removes any special characters.
+     * If the phone field is empty, it will be set to null.
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setPhoneAttribute(?string $value): void
+    {
+        $phone = preg_replace('/[^0-9]/', '', $value);
+        $this->attributes['phone'] = !empty($phone) ? $phone : null;
+    }
+
+    /**
+     * Set the client's email address to lowercase.
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setEmailAttribute(?string $value): void
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    /**
+     * Set the client's first name to capitalized.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setFirstNameAttribute(string $value): void
+    {
+        $this->attributes['first_name'] = ucfirst(strtolower($value));
+    }
+
+    /**
+     * Set the client's last name to capitalized.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setLastNameAttribute(string $value): void
+    {
+        $this->attributes['last_name'] = ucfirst(strtolower($value));
+    }
 }
