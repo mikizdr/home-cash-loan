@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientCreateRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 
@@ -41,7 +41,7 @@ class AdvisorController extends Controller
         ]));
 
         return redirect()->route('clients.index')
-        ->with('client-action', "Client $client->first_name $client->last_name created successfully!");
+            ->with('client-action', "Client $client->first_name $client->last_name created successfully!");
     }
 
     /**
@@ -55,17 +55,20 @@ class AdvisorController extends Controller
     /**
      * Show the form for editing the specified client.
      */
-    public function edit(Client $client)
+    public function edit(Client $client): Factory|View
     {
-        //;
+        return view('client.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientUpdateRequest $request, Client $client): RedirectResponse
     {
-        //
+        $client->update($request->validated());
+
+        return redirect()->route('clients.index')
+            ->with('client-action', "Client $client->first_name $client->last_name updated successfully!");
     }
 
     /**
