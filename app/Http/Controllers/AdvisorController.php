@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\LoanAmountRequest;
 use App\Http\Requests\ClientCreateRequest;
 use App\Http\Requests\ClientUpdateRequest;
+use App\Http\Requests\HomeAmountRequest;
 
 class AdvisorController extends Controller
 {
@@ -97,6 +98,33 @@ class AdvisorController extends Controller
         } catch (\Exception $e) {
             return back()
                 ->with('client-error', "Client $client->first_name $client->last_name cash loan creation failed: {$e->getMessage()}.");
+        }
+    }
+
+    /**
+     * Create or update a home loan for the specified client.
+     */
+    public function loanHome(HomeAmountRequest $request, Client $client): RedirectResponse
+    {
+        try {
+            $propertyValue = (float) $request->input('property_value');
+            $downPayment = (float) $request->input('down_payment');
+
+            $client->homeLoanProduct()->updateOrCreate(
+                [
+                    'client_id' => $client->id
+                ],
+                [
+                    'property_value' => $propertyValue,
+                    'down_payment' => $downPayment,
+                ]
+            );
+
+            return back()
+                ->with('client-action', "Home loan of the client $client->first_name $client->last_name's created successfully!");
+        } catch (\Exception $e) {
+            return back()
+                ->with('client-error', "Client $client->first_name $client->last_name home loan creation failed: {$e->getMessage()}.");
         }
     }
 }

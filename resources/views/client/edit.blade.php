@@ -15,7 +15,7 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="relative overflow-x-auto">
                 <form
@@ -111,7 +111,7 @@
         </div>
     </div>
 
-    <div class="py-12">
+    <div class="pt-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">
                 {{ __('Client\'s Cash Loan') }}
@@ -144,6 +144,57 @@
                     <button type="submit"
                         class="focus:outline-none text-white bg-amber-500 hover:bg-amber-700 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-amber-900">
                         {{ __('Update Cash Loan') }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">
+                {{ __('Client\'s Home Loan') }}
+            </h3>
+            <hr class="mb-4 border-blue-500" />
+            <div class="relative overflow-x-auto">
+                <form
+                    id="loanHome"
+                    method="post"
+                    action="{{ route('clients.loan.home', $client->id) }}"
+                    class="max-w mx-auto p-2 mt-4"
+                    novalidate
+                >
+                    @csrf
+
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 w-full mb-5 group">
+                            <x-crm-input
+                                type="number"
+                                name="property_value"
+                                id="property_value"
+                                :value="$client->homeLoanProduct->property_value ?? 0"
+                                required
+                            />
+                            <x-crm-label for="property_value" :value="__('Property value')" />
+                            {{-- Error message from the back end --}}
+                            <x-input-error class="mt-2" :messages="$errors->get('property_value')" />
+                        </div>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <x-crm-input
+                                type="number"
+                                name="down_payment"
+                                id="down_payment"
+                                :value="$client->homeLoanProduct->down_payment ?? 0"
+                                required
+                            />
+                            <x-crm-label for="down_payment" :value="__('Down payment')" />
+                            {{-- Error message from the back end --}}
+                            <x-input-error class="mt-2" :messages="$errors->get('down_payment')" />
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="focus:outline-none text-white bg-lime-500 hover:bg-lime-700 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-lime-900">
+                        {{ __('Update Home Loan') }}
                     </button>
                 </form>
             </div>
