@@ -71,8 +71,11 @@ class AdvisorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(Client $client): RedirectResponse
     {
-        //
+        $client->delete();
+
+        return redirect()->route('clients.index')
+            ->with('client-action', "Client $client->first_name $client->last_name deleted successfully.");
     }
 }

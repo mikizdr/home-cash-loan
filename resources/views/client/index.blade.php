@@ -95,10 +95,17 @@
                                             class="focus:outline-none text-black bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                             {{ __('Edit') }}
                                         </button>
-                                        <button type="button"
-                                            class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-500 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                            {{ __('Delete') }}
-                                        </button>
+
+                                        <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                onclick="deleteClient(event)"
+                                                type="submit"
+                                                class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-500 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
                                     @else
                                         <span class="text-blue-500 dark:text-gray-400">
                                             {{ __('No permissions for this client') }}
@@ -115,4 +122,14 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            const deleteClient = event => {
+                event.preventDefault();
+                confirm('Are you sure you want to delete this client?') && event.target.closest('form').submit();
+            }
+        </script>
+    @endpush
 </x-app-layout>
+
