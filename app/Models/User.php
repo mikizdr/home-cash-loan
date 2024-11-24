@@ -3,12 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Helper\CustomPaginator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class User extends Authenticatable
 {
@@ -98,5 +99,41 @@ class User extends Authenticatable
     public function isAdvisor(): bool
     {
         return $this->role_id === Role::ADVISOR;
+    }
+
+    /**
+     * Get the cash and home loan products for the user
+     * sorted by updated_at attribute.
+     */
+    public function getSortedProducts(): LengthAwarePaginator
+    {
+        $products = [];
+        $clients = $this->clients;
+        $sortedBy = 'updated_at';
+
+        foreach ($clients as $client) {
+            if ($client->cashLoanProduct) {
+                array_push($products, [
+                    'type' => 'Cash Loan',
+                    'loan_amount' => $client->cashLoanProduct->loan_amount,
+                    $sortedBy => $client->cashLoanProduct[$sortedBy],
+                ]);
+            }
+
+            if ($client->homeLoanProduct) {
+                array_push($products, [
+                    'type' => 'Home Loan',
+                    'property_value' => $client->homeLoanProduct->property_value,
+                    'down_payment' => $client->homeLoanProduct->down_payment,
+                    $sortedBy => $client->homeLoanProduct[$sortedBy],
+                ]);
+            }
+        }
+
+        usort($products, fn($a, $b) => strtotime($b[$sortedBy]) <=> strtotime($a[$sortedBy]));
+
+        $paginatedProducts = CustomPaginator::paginate($products, 10);
+
+        return $paginatedProducts;
     }
 }

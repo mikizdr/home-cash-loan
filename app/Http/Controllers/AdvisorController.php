@@ -127,9 +127,15 @@ class AdvisorController extends Controller
                 ->with('client-error', "Client $client->first_name $client->last_name home loan creation failed: {$e->getMessage()}.");
         }
     }
-
+    /**
+     * Display a paginated listing of all clients with their loan products.
+     */
     public function advisorReport(): Factory|View
     {
-        return view('client.report');
+        $paginatedProducts = auth()->user()->getSortedProducts();
+
+        return view('client.report', [
+            'products' => $paginatedProducts,
+        ]);
     }
 }
