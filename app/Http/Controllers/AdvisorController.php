@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\CashAmountRequest;
+use App\Http\Requests\HomeAmountRequest;
 use App\Http\Requests\ClientCreateRequest;
 use App\Http\Requests\ClientUpdateRequest;
-use App\Http\Requests\HomeAmountRequest;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdvisorController extends Controller
 {
@@ -137,5 +138,37 @@ class AdvisorController extends Controller
         return view('client.report', [
             'products' => $paginatedProducts,
         ]);
+    }
+
+    /**
+     * Generate a CSV file of all clients with their loan products
+     * sorted by date.
+     */
+    public function generateCsv(): StreamedResponse
+    {
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="products_report.csv"',
+        ];
+
+        $generateCsv = function (): void {
+            $products = auth()->user()->getSortedProducts(true);
+            $csv = fopen('php://output', 'w');
+            fputcsv($csv, ['Product Type', 'Product Value', 'Creation Date']);
+
+            foreach ($products as $product) {
+                fputcsv($csv, [
+                    $product['type'],
+                    $product['type'] === 'Cash Loan'
+                        ? $product['loan_amount']
+                        : "{$product['property_value']} - {$product['down_payment']}",
+                    date_format($product['updated_at'], 'd-m-Y H:i:s'),
+                ]);
+            }
+
+            fclose($csv);
+        };
+
+        return response()->streamDownload($generateCsv, 'products_report.csv', $headers);
     }
 }

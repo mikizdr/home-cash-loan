@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function (): void {
 
         // Report route.
         Route::get('/clients/report', [AdvisorController::class, 'advisorReport'])->name('advisor.report');
+        Route::get('/clients/report/csv', [AdvisorController::class, 'generateCsv'])->name('advisor.report.csv');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -105,7 +105,7 @@ class User extends Authenticatable
      * Get the cash and home loan products for the user
      * sorted by updated_at attribute.
      */
-    public function getSortedProducts(): LengthAwarePaginator
+    public function getSortedProducts(bool $returnNonPaginated = false): array|LengthAwarePaginator
     {
         $products = [];
         $clients = $this->clients;
@@ -131,6 +131,10 @@ class User extends Authenticatable
         }
 
         usort($products, fn($a, $b) => strtotime($b[$sortedBy]) <=> strtotime($a[$sortedBy]));
+
+        if ($returnNonPaginated) {
+            return $products;
+        }
 
         $paginatedProducts = CustomPaginator::paginate($products, 10);
 
