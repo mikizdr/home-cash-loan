@@ -26,7 +26,7 @@ class EnsureAdvisorOwnsClient
         if (
             Auth::check()
             && Auth::user()->isAdvisor()
-            && Route::is($this->allowedRoutesForAdvisorsOnly())
+            && Auth::user()::allowedRoutesForAdvisorsOnly()
         ) {
             return $next($request);
         }
@@ -41,20 +41,5 @@ class EnsureAdvisorOwnsClient
 
         return redirect()->route($route)
             ->with('client-error', $message);
-    }
-
-    /**
-     * Get the allowed routes by their names for advisors only.
-     * These routes are open for all advisors.
-     */
-    public function allowedRoutesForAdvisorsOnly(): array
-    {
-        return [
-            'clients.index',
-            'clients.create',
-            'clients.store',
-            'advisor.report',
-            'advisor.report.csv',
-        ];
     }
 }

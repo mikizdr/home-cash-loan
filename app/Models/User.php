@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Route;
 
 class User extends Authenticatable
 {
@@ -99,6 +100,21 @@ class User extends Authenticatable
     public function isAdvisor(): bool
     {
         return $this->role_id === Role::ADVISOR;
+    }
+
+    /**
+     * Get the allowed routes by their names for advisors only.
+     * These routes are open for all advisors.
+     */
+    public static function allowedRoutesForAdvisorsOnly(): bool
+    {
+        return Route::is([
+            'clients.index',
+            'clients.create',
+            'clients.store',
+            'advisor.report',
+            'advisor.report.csv',
+        ]);
     }
 
     /**
