@@ -7,6 +7,22 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+### <i>Requirements</i>
+ - PHP v.8.2.x
+ - Composer version 2.5.5
+ - MySQL  Ver 8.0.31 for Win64 on x86_64
+
+### <i>Install application</i>
+- git clone
+- composer install
+- create a fresh new database and put credentials in `.env` file
+- `php artisan migrate` or `php artisan migrate --seed` if you want to have the DB populated with testing data
+- composer dev
+- go to http://localhost:8000 or other port if you choose a different one
+
+<hr />
+
 # Project Specification
 
 <strong>Application description:</strong>
