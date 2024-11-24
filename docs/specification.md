@@ -114,7 +114,7 @@ This is how the db structure should look like, together with its integrity:
         - [x] Creation date
     - [x] Order the report by creation date, from newest to oldest
     - [x] This report should contain only the products that belong to the currently logged-in advisor
-    - [ ] (✨ Bonus points) Enable advisors to export this report to CSV
+    - [x] (✨ Bonus points) Enable advisors to export this report to CSV
 
 # Tasks - workflow
 
@@ -132,7 +132,7 @@ This is how the db structure should look like, together with its integrity:
 - [x] Generate reports: implement business logic for report generation for an auth advisor
 - [x] Create advisor profile page (already exists in the system)
 - [x] Design `Login Page`: layout, FE validation
-- [ ] Design `Dashboard`: implement required links in the main menu
+- [x] Design `Dashboard`: implement required links in the main menu
 - [x] Design `All Clients` page
 - [x] Design `Create Client` page
 - [x] Design `Edit Client` page
