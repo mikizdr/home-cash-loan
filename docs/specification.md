@@ -51,7 +51,7 @@ This is how the db structure should look like, together with its integrity:
 - [x] Advisor authorization:
     - [x] Advisor can view all clients (no restrictions)
     - [x] Advisor can not update a client’s product, if that product is assigned to a different advisor
-    - [ ] When compiling the report, only products of the currently logged-in advisor must be used
+    - [x] When compiling the report, only products of the currently logged-in advisor must be used
 - [x] Client management
     - [x] Show all clients
     - [x] CRUD on a client by an advisor
@@ -61,7 +61,7 @@ This is how the db structure should look like, together with its integrity:
         - [x] add/update cash loan
         - [x] add/update home loan and property value
 - [x] Data validation at the DB level and app level (front and back end)
-- [ ] Generate a report for an advisor
+- [x] Generate a report for an advisor
 
 ### Front end
 - Login page:
@@ -106,14 +106,14 @@ This is how the db structure should look like, together with its integrity:
         - [x] Advisor ID is the advisor currently logged in
 
 - View report page:
-    - [ ] Display a single table, with the following columns:
-        - [ ] Product type (Cash loan / Home loan)
-        - [ ] Product value
-            - [ ] For cash loans, the loan amount
-            - [ ] For home loans, property value - down payment amount
-        - [ ] Creation date
-    - [ ] Order the report by creation date, from newest to oldest
-    - [ ] This report should contain only the products that belong to the currently logged-in advisor
+    - [x] Display a single table, with the following columns:
+        - [x] Product type (Cash loan / Home loan)
+        - [x] Product value
+            - [x] For cash loans, the loan amount
+            - [x] For home loans, property value - down payment amount
+        - [x] Creation date
+    - [x] Order the report by creation date, from newest to oldest
+    - [x] This report should contain only the products that belong to the currently logged-in advisor
     - [ ] (✨ Bonus points) Enable advisors to export this report to CSV
 
 # Tasks - workflow
@@ -129,13 +129,13 @@ This is how the db structure should look like, together with its integrity:
 - [x] Add the CashLoanProduct entity in the app
 - [x] Create `cash_loan_products` table with a seeder
 - [x] Develop client management module (CRUD by advisor)
-- [ ] Generate reports: implement business logic for report generation for an auth advisor
+- [x] Generate reports: implement business logic for report generation for an auth advisor
 - [x] Create advisor profile page (already exists in the system)
 - [x] Design `Login Page`: layout, FE validation
 - [ ] Design `Dashboard`: implement required links in the main menu
 - [x] Design `All Clients` page
 - [x] Design `Create Client` page
 - [x] Design `Edit Client` page
-- [ ] Design `View Report` page
+- [x] Design `View Report` page
 - [ ] Write unit and e2e tests (if needed)
 
