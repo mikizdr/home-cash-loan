@@ -16,6 +16,8 @@
 ### <i>Install application</i>
 - `git clone`
 - run `composer install`
+- run `npm install`
+- run `npm run build`
 - copy `.env.example` to `.env`
 - create a fresh new database and put credentials in `.env` file
 - `php artisan key:generate`
