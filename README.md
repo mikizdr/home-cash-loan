@@ -14,11 +14,14 @@
  - MySQL  Ver 8.0.31 for Win64 on x86_64
 
 ### <i>Install application</i>
-- git clone
-- composer install
+- `git clone`
+- run `composer install`
+- copy `.env.example` to `.env`
 - create a fresh new database and put credentials in `.env` file
-- `php artisan migrate` or `php artisan migrate --seed` if you want to have the DB populated with testing data
-- composer dev
+- `php artisan key:generate`
+- `php artisan migrate` and `php artisan db:seed --class=RoleSeeder` to have roles table populated
+- or `php artisan migrate --seed` if you want to have all necessary tables populated with data for quick testing.
+- run `composer dev`
 - go to http://localhost:8000 or other port if you choose a different one
 
 <hr />
