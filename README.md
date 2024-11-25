@@ -21,7 +21,7 @@
 - copy `.env.example` to `.env`
 - create a fresh new database and put credentials in `.env` file
 - `php artisan key:generate`
-- `php artisan migrate` and `php artisan db:seed --class=RoleSeeder` to have roles table populated
+- `php artisan migrate`, `php artisan db:seed --class=RoleSeeder`. and `php artisan db:seed --class=AdvisorSeeder` to have roles table populated and yes users for login
 - or `php artisan migrate --seed` if you want to have all necessary tables populated with data for quick testing.
 - run `composer dev`
 - go to http://localhost:8000 or other port if you choose a different one
